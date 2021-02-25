@@ -1,4 +1,4 @@
-﻿$exportLocation = "C:\users\ahiser\documents\scripts\teams\export2.csv"
+﻿$exportLocation = "C:\users\USER\documents\scripts\teams\export2.csv"
 # Define a new object to gather output
 $OutputCollection=  @()
 

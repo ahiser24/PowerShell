@@ -14,7 +14,7 @@ while ($choice1 -notmatch "[y|n]"){
 
 #If YES create new Office365 group, and add members from C:\scripts\DGExportMembers.csv file.
 if ($choice1 -eq "y"){
-       New-UnifiedGroup -DisplayName "$NewGroupName" -Alias "$NewGroupNameNoSpaces" -PrimarySMTPAddress $NewGroupNameNoSpaces@badcock.com
+       New-UnifiedGroup -DisplayName "$NewGroupName" -Alias "$NewGroupNameNoSpaces" -PrimarySMTPAddress $NewGroupNameNoSpaces@contoso.com
        Set-UnifiedGroup "$NewGroupName" -UnifiedGroupWelcomeMessageEnabled:$false
        Start-Sleep -s 5
        Import-CSV "C:\scripts\DGExportMembers.csv" | ForEach-Object {Add-UnifiedGroupLinks –Identity "$NewGroupName" –LinkType Members –Links $_.PrimarySmtpAddress}

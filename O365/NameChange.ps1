@@ -27,16 +27,16 @@ If ($Oldprimary) {
 Write-Host "Primary SMTP exists. Modifying"
 Set-ADUser -Identity $alias -remove @{ProxyAddresses="$Oldprimary"}
 Set-ADUser -Identity $alias -Add @{ProxyAddresses="smtp:$Oldemail"}
-Set-ADUser -Identity $alias -remove @{ProxyAddresses="smtp:$First.$Last@badcock.com"}
-Set-ADUser -Identity $alias -Add @{Proxyaddresses="SMTP:$First.$Last@badcock.com"}
-Set-ADUser -Identity $alias -Add @{Proxyaddresses="smtp:$First.$Last@badcock.mail.onmicrosoft.com"}
-Set-ADUser $alias -EmailAddress "$First.$Last@badcock.com"
+Set-ADUser -Identity $alias -remove @{ProxyAddresses="smtp:$First.$Last@contoso.com"}
+Set-ADUser -Identity $alias -Add @{Proxyaddresses="SMTP:$First.$Last@contoso.com"}
+Set-ADUser -Identity $alias -Add @{Proxyaddresses="smtp:$First.$Last@contoso.mail.onmicrosoft.com"}
+Set-ADUser $alias -EmailAddress "$First.$Last@contoso.com"
 }
 Else {
 Write-Host "Primary SMTP does NOT exist. Modifying"
 Set-ADUser -Identity $alias -Add @{ProxyAddresses="smtp:$Oldemail"}
-Set-ADUser -Identity $alias -Add @{Proxyaddresses="SMTP:$First.$Last@badcock.com"}
-Set-ADUser -Identity $alias -Add @{Proxyaddresses="smtp:$First.$Last@badcock.mail.onmicrosoft.com"}
-Set-ADUser $alias -EmailAddress "$First.$Last@badcock.com"
+Set-ADUser -Identity $alias -Add @{Proxyaddresses="SMTP:$First.$Last@contoso.com"}
+Set-ADUser -Identity $alias -Add @{Proxyaddresses="smtp:$First.$Last@contoso.mail.onmicrosoft.com"}
+Set-ADUser $alias -EmailAddress "$First.$Last@contoso.com"
 }
 Write-Host "Complete"

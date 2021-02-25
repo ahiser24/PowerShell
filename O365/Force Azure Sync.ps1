@@ -1,7 +1,7 @@
 ﻿#Connect to O365 Powershell
 Connect-MsolService
 #Run Azure Sync and wait until complete
-Invoke-Command -ComputerName PADFS00 -ScriptBlock {Import-Module ADSync
+Invoke-Command -ComputerName COMPUTERNAME -ScriptBlock {Import-Module ADSync
 Start-ADSyncSyncCycle -PolicyType Delta}
 Write-Host "Initializing Azure AD Delta Sync..." -ForegroundColor Yellow
 

@@ -4,9 +4,9 @@
 #SubFolder = Subsite folder location starting with Shared Documents
 #SourceFiles = Folder location with files to upload to SharePoint
 
-$URL = "https://mosaicco.sharepoint.com/sites/Ent-TestClientServicesIT-Ent2"
+$URL = "https://contoso.sharepoint.com/sites/subsite"
 $SubFolder = "Shared Documents/test2/PowerShell"
-$SourceFiles = "C:\Users\ahiser\Downloads\upload"
+$SourceFiles = "C:\Users\USER\Downloads\upload"
 
 #Install-Module PnP.PowerShell if not already installed
 Import-Module PnP.PowerShell 

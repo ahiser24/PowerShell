@@ -2,7 +2,7 @@
 
 Import-Module ActiveDirectory
 
-$Users = Import-csv "C:\Scripts\Exchange_O365\Office365 migration\NewHires1-24BlockExtEmail.csv" -Header USer_AD
+$Users = Import-csv "C:\Scripts\Exchange_O365\Office365 migration\blockextemail.csv" -Header USer_AD
 
 ForEach ($USer in $Users) {
 	$USer1 = $user.User_AD.split('@')[0]
