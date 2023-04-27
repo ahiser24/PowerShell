@@ -1,5 +1,5 @@
 #Create Deep links to files in Teams
-$TenantID = "1273caf7-13b7-4a89-b44a-3967d45ba0a9"
+$TenantID = "INSERT YOUR TENANTID HERE"
 #Define file type choices
 $fileTypeChoices = [System.Management.Automation.Host.ChoiceDescription[]] @(
     (New-Object System.Management.Automation.Host.ChoiceDescription "&docx"),
