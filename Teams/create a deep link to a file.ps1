@@ -4,8 +4,8 @@ $TenantID = "INSERT YOUR TENANTID HERE"
 $fileTypeChoices = [System.Management.Automation.Host.ChoiceDescription[]] @(
     (New-Object System.Management.Automation.Host.ChoiceDescription "&docx"),
     (New-Object System.Management.Automation.Host.ChoiceDescription "&xlsx"),
-    (New-Object System.Management.Automation.Host.ChoiceDescription "&ppt"),
-    (New-Object System.Management.Automation.Host.ChoiceDescription "&pdf")
+    (New-Object System.Management.Automation.Host.ChoiceDescription "&csv"),
+    (New-Object System.Management.Automation.Host.ChoiceDescription "&ppt")
 )
 
 #Ask user for File URL
