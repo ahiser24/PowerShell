@@ -11,7 +11,7 @@ $fileTypeChoices = [System.Management.Automation.Host.ChoiceDescription[]] @(
 #Ask user for File URL
 $fileURL = Read-Host -Prompt "What is the file URL?"
 $fileID = $fileURL.split("?")[0].split("/")[-1]
-$fileID
+
 #Ask the user for file type
 $fileTypeIndex = $host.UI.PromptForChoice("File Type", "What is the file type?", $fileTypeChoices, 0)
 
@@ -19,7 +19,6 @@ $fileTypeIndex = $host.UI.PromptForChoice("File Type", "What is the file type?",
 $fileType = $fileTypeChoices[$fileTypeIndex].Label.Trim("&")
 
 #Put the information together into a deep link
-$deepLink = "https://teams.microsoft.com/l/file/$fileID?tenantId=$TenantID&fileType=$fileType&objectUrl=$fileURL"
-
+$deeplink = "https://teams.microsoft.com/l/file/" + $fileID + "?tenantId=$TenantID&fileType=$fileType&objectUrl=$fileURL"
 #Return the deep link
 Write-Host "The deep link to your file is $deepLink"
