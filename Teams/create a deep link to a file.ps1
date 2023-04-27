@@ -20,5 +20,6 @@ $fileType = $fileTypeChoices[$fileTypeIndex].Label.Trim("&")
 
 #Put the information together into a deep link
 $deeplink = "https://teams.microsoft.com/l/file/" + $fileID + "?tenantId=$TenantID&fileType=$fileType&objectUrl=$fileURL"
-#Return the deep link
+#Return the deep link & copy it to the clipboard
 Write-Host "The deep link to your file is $deepLink"
+$deeplink | Set-Clipboard
