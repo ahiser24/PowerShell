@@ -1,6 +1,6 @@
 ﻿#Config Parameters
-$AdminSiteURL="https://mosaicco-admin.sharepoint.com"
-$UserAccount = "katie.widman@mosaicco.com"
+$AdminSiteURL="https://TENANT-admin.sharepoint.com"
+$UserAccount = "John.Doe@TENANT.com"
   
 #Connect to SharePoint Online Tenant Admin
 Connect-SPOService -URL $AdminSiteURL
