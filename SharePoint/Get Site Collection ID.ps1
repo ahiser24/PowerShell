@@ -1,5 +1,5 @@
 ﻿#Config Variable
-$SiteURL = "https://mosaicco.sharepoint.com/sites/Ent-TestClientServicesIT-Ent2"
+$SiteURL = "https://TENANT.sharepoint.com/sites/Ent-TestClientServicesIT-Ent2"
  
 #Connect to PnP Online
 Connect-PnPOnline -Url $SiteURL -UseWebLogin;
