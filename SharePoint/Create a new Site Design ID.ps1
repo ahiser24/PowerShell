@@ -1,5 +1,5 @@
 ﻿#Connect to SharePoint Online
-Connect-SPOService -Url "https://mosaicco-admin.sharepoint.com/"
+Connect-SPOService -Url "https://TENANT-admin.sharepoint.com/"
 
 #Enter the Site collection and information for the Site Design
 $SiteURL = Read-Host "What is the URL for the site collection?"
