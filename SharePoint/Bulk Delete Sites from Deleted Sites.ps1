@@ -1,5 +1,5 @@
 ﻿#Connect to SharePoint Online Admin Center
-Connect-SPOService -Url "https://mosaicco-admin.sharepoint.com"
+Connect-SPOService -Url "https://TENANT-admin.sharepoint.com"
 
 #Import CSV file
 $Sites = Import-CSV -Path "$env:USERPROFILE\Downloads\sitedeletion.csv"
