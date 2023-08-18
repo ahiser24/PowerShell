@@ -1,7 +1,7 @@
 ﻿#Create Deep links to files in Teams
 
-#Mosaic's Tenant ID
-$TenantID = "1273caf7-13b7-4a89-b44a-3967d45ba0a9"
+#Tenant ID
+$TenantID = "TENANT_ID"
 
 #Define file type choices
 $fileTypeChoices = [System.Management.Automation.Host.ChoiceDescription[]] @(
