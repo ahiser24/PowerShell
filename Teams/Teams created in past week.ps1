@@ -1,6 +1,6 @@
 ﻿<#Generates a spreadsheet of Teams that have been created in the past 7 days by comparing SharePoint sites with the same name that were created. #>
-$outputpath = "c:\temp\mosaicco_Teams_created.csv"
-$SPOAdminSite = "https://mosaicco-admin.sharepoint.com"
+$outputpath = "c:\temp\TENANT_Teams_created.csv"
+$SPOAdminSite = "https://TENANT-admin.sharepoint.com"
  
 $offsetDays = 7 #Enter the number of previous days to report on
  
