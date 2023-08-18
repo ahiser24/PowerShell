@@ -1,5 +1,5 @@
 ﻿#SharePoint Admin URL
-$Share_URL = "https://mosaicco-admin.sharepoint.com/"
+$Share_URL = "https://TENANT-admin.sharepoint.com/"
 $email = Read-Host "What is the email address for OneDrive user in question?"
 
 #Connect to SharePoint
@@ -7,7 +7,7 @@ Connect-SPOService -URL $Share_URL
 
 #Get proper URL for OneDrive
 $OneDrive = $email.Replace(".","_").Replace("@","_")
-$OneDriveSiteURL = "https://mosaicco-my.sharepoint.com/personal/" + "$OneDrive"
+$OneDriveSiteURL = "https://TENANT-my.sharepoint.com/personal/" + "$OneDrive"
 
 $DownloadPath ="C:\Temp\OneDrive"
  
