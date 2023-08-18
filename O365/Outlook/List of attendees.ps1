@@ -1,5 +1,5 @@
 ﻿#Setup - User copies all users from the "TO" field in Outlook invite and pastes them into a txt file called names.txt.
-#The format will look like this "Hiser, Andrew - MTC <Andrew.Hiser@mosaicco.com>"
+#The format will look like this "Doe, John <John.Doe@email.com>"
 
 #Reads the text file called names.txt from Downloads folder and converts it to a string
 $text_file = Get-Content $env:USERPROFILE\Downloads\names.txt
