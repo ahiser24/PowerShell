@@ -1,17 +1,10 @@
-﻿<#
-|------------------------------------------------------------ Microsoft Teams Report ---------------------------------------------------------------|
-| Written by Shaun Wilkinson                                                                                                                        |
-| Generates a report showing all teams and users                                                                                                    |
-| Requirements: Access to all teams and Team PS module - https://www.powershellgallery.com/packages/MicrosoftTeams                                  |
-|---------------------------------------------------------------------------------------------------------------------------------------------------|
-#>
- 
- 
-$exportLocation = "C:\temp\export.csv"
+
  
 #Connect to Microsoft Teams
 Connect-MicrosoftTeams
- 
+
+$exportLocation = "C:\temp\export.csv" 
+
 # Get all of the team Groups IDs
 $AllTeamsInOrg = (Get-Team).GroupID
 $TeamReport = @()
