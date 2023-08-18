@@ -1,6 +1,6 @@
 ﻿#Variables for processing
-$AdminURL = "https://mosaicco-admin.sharepoint.com/"
-$AdminName = "ADMIN@mosaicco.com"
+$AdminURL = "https://TENANT-admin.sharepoint.com/"
+$AdminName = "ADMIN@TENANT.com"
  
 #Connect to SharePoint Online
 Connect-SPOService -url $AdminURL
