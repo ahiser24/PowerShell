@@ -1,0 +1,30 @@
+#Replace the Everyone Except External Users permission on all sites
+# Connect to SharePoint Online
+Connect-SPOService -Url https://TENANT-admin.sharepoint.com
+
+# Get all site collections
+$siteCollections = Get-SPOSite -Limit All
+
+# Define the group to replace "Everyone except external users"
+$targetGroup = "group1"
+
+# Loop through each site collection
+foreach ($site in $siteCollections) {
+    Write-Host "Checking site $($site.Url)"
+    
+    # Get the site's permissions
+    $sitePermissions = Get-SPOUser -Site $site.Url
+
+    # Check if "Everyone except external users" is in the permissions
+    $everyonePermission = $sitePermissions | Where-Object { $_.LoginName -eq "Everyone except external users" }
+    
+    if ($everyonePermission) {
+        Write-Host "Replacing permissions for $($site.Url)"
+        
+        # Remove the "Everyone except external users" permission
+        Remove-SPOUser -Site $site.Url -LoginName $everyonePermission.LoginName
+        
+        # Add the target group with desired permissions
+        Set-SPOUser -Site $site.Url -LoginName $targetGroup -IsSiteCollectionAdmin $false
+    }
+}
