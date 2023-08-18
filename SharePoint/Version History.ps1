@@ -3,7 +3,7 @@ $SiteURL = Read-Host "What is the Site Collection Address?"
 $LibraryName = Read-Host "What is the library name? example: 'Documents'"
 Write-Host "The file will be saved to 'C:\Temp\VersionHistory.csv'"
 $CSVPath = "C:\Temp\VersionHistory.csv"
-$prefix="https://mosaicco.sharepoint.com"
+$prefix="https://TENANT.sharepoint.com"
   
 #Connect to SharePoint Online site
 Connect-PnPOnline -Url $SiteURL -UseWebLogin;
