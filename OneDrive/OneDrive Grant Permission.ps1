@@ -1,7 +1,7 @@
 ﻿#This script grants permission for a user to have access to someone else's OneDrive. It will prompt for the email address of the user as well as who the new admin will be for that account.
 
 #SharePoint Admin URL
-$URL = "https://mosaicco-admin.sharepoint.com/"
+$URL = "https://TENANT-admin.sharepoint.com/"
 
 #Connect to SharePoint
 Connect-SPOService -URL $URL
@@ -13,7 +13,7 @@ $email = Read-Host "What is the email address for OneDrive user in question?"
 
 #Get proper URL for OneDrive
 $OneDrive = $email.Replace(".","_").Replace("@","_")
-$url = "https://mosaicco-my.sharepoint.com/personal/" + "$OneDrive"
+$url = "https://TENANT-my.sharepoint.com/personal/" + "$OneDrive"
 $url
 
 #Set secondary admin
