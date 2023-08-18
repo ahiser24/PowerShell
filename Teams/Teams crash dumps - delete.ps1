@@ -1,0 +1,1 @@
+﻿Remove-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\Teams.exe'

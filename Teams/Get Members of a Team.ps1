@@ -13,7 +13,7 @@ Function EnterGroupId {
 
 Function Save-File ([string]$initialDirectory) {
 
-	$SaveInitialPath = "C:\"
+	$SaveInitialPath = "C:\temp\"
 	$SaveFileName = "Result.csv"
 
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null

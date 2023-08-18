@@ -1,4 +1,5 @@
-﻿function Get-TeamsAppInstallationReport {
+﻿Get-TeamsAppInstallationReport | Export-Csv -Path "C:\Temp\TeamsAppInstallationReport.csv"
+function Get-TeamsAppInstallationReport {
 <#
 .SYNOPSIS
     Generates a report of all Teams apps installed in all teams
@@ -17,7 +18,7 @@
     MicrosoftTeams version 1.1.3-preview module.
 #>
  
-#Requires -Modules @{ ModuleName="MicrosoftTeams"; RequiredVersion="1.1.3" }
+
  
     [CmdletBinding()]
     param (
