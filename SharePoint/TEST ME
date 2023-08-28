@@ -16,6 +16,7 @@ foreach ($site in $siteCollections) {
     $groupVisitors = $siteTitle + " Visitors"
     $groupMembers = $siteTitle + " Members"
     $everyoneUser = "spo-grid-all-users/8d0133b7-55da-4532-882f-4964a77d21fd"
+    $userToAdd = "John.Doe@tenant.com"
 
     try {
         # Get SharePoint groups
@@ -34,12 +35,17 @@ foreach ($site in $siteCollections) {
             'Error' = $null
         }
 
-        if ($userInVisitors -or $userInMembers) {
-            # Add user "john.doe@tenant.com" with READ permission
-            Add-SPOSiteUser -Site $site.Url -LoginName "john.doe@tenant.com" -PermissionLevel "Read"
+        if ($userInVisitors) {
+            # Add user "John.Doe@tenant.com" to the Visitors group with READ permission
+            Add-SPOUser -Site $site.Url -LoginName $userToAdd -Group $groupVisitors -PermissionLevel "Read"
             
-            # Remove the "Everyone Except External Users" group
-            Remove-SPOSiteGroup -Site $site.Url -Group $everyoneUser
+            # Remove the "Everyone Except External Users" group from Visitors
+            Remove-SPOUser -Site $site.Url -LoginName $everyoneUser -Group $groupVisitors
+        }
+        
+        if ($userInMembers) {
+            # Remove the "Everyone Except External Users" group from Members
+            Remove-SPOUser -Site $site.Url -LoginName $everyoneUser -Group $groupMembers
         }
     }
     catch {
