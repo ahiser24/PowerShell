@@ -1,12 +1,12 @@
 ﻿#Connect to SharePoint Online
-Connect-SPOService -Url https://mosaicco-admin.sharepoint.com
+Connect-SPOService -Url https://TENANT-admin.sharepoint.com
 
 
 #Get all site collections
 $siteCollections = Get-SPOSite -Limit All
 
 #Your admin account
-$adminAccount = "adm-ahiser@mna.corp.mosaicco.com"
+$adminAccount = "ADMIN@TENANT.com"
 
 #Prepare CSV export
 $failedSites = @()
