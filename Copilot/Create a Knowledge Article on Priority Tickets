@@ -1,0 +1,133 @@
+# Goal: To create a knowledge article for P1 & P2 tickets using the closed incident information and worknotes.
+# Copilot in Edge is unable to read ServiceNow directly, so this is a workaround solution.
+# This script will extract the sys_id of an Incident and create a download link for the PDF file.
+# The PDF will download and open in MS Edge so that Copilot can read it.
+# Copilot in Edge will open and PowerShell will paste a prompt.
+
+# Prompt for the original ServiceNow URL
+$originalUrl = Read-Host "Incident URL"
+
+# Use regex to extract the sys_id from the URL
+$sysID = if ($originalUrl -match "sys_id%3D(.*?)%26sysparm") {
+    $matches[1]
+} else {
+    "Pattern not found"
+}
+
+# Get the full URL to the PDF for the incident
+# PDF URL using sys_id
+# Replace [DOMAIN] with your service now domain address.
+$pdfURL = "https://[DOMAIN].service-now.com/incident.do?sys_id=$sysID&PDF&sysparm_view=&related_list_filter=&sysparm_domain="
+
+# Save to Downloads folder
+$downloadsFolder = "$env:USERPROFILE\Downloads\Incident.pdf"
+
+# Check if the file exists in the Downloads folder and delete it if present
+if (Test-Path $downloadsFolder) {
+    Remove-Item $downloadsFolder
+    Write-Output "Incident.pdf was found and has been deleted."
+} else {
+    Write-Output "Incident.pdf does not exist in the Downloads folder. Proceeding..."
+}
+
+# Output the new URL
+Write-Output "PDF Download: $pdfURL"
+
+# Open MS Edge or use the existing Edge window.
+# Use Start-Process with the full path to regular Edge to open the URL in the same window
+$edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+Start-Process -FilePath $edgePath -ArgumentList $pdfURL
+
+# Wait until the PDF is successfully downloaded to the Downloads Folder
+$previousSize = 0
+while ($true) {
+    Start-Sleep -Seconds 1
+    if (Test-Path $downloadsFolder) {
+        $currentSize = (Get-Item $downloadsFolder).Length
+        if ($currentSize -eq $previousSize) {
+            break
+        }
+        $previousSize = $currentSize
+    }
+}
+
+# Let the user know where the PDF was downloaded to.
+Write-Output "Incident PDF downloaded to $downloadsFolder"
+
+# Open PDF file in Microsoft Edge
+Start-Process -FilePath $edgePath -ArgumentList $downloadsFolder
+# Wait for 5 seconds to give the PDF time to load. Adjust as necessary.
+Start-Sleep -Seconds 5
+
+
+# Save the prompt below to the variable $paragraph
+$paragraph = @"
+Answer using context clues on this page.
+
+• What is the incident number?
+• Who is the caller?
+• When did the incident (INC) get created?
+• Who was this Assigned?
+• Has the incident been resolved?
+• If resolved, please provide a detailed description of the resolution.
+• Outline the steps taken by the technician to resolve the incident.
+• What was identified as the root cause of the incident?
+• Create a Knowledge Article based on the resolution and troubleshooting steps.
+"@
+
+# Copy the paragraph variable to the clipboard
+Set-Clipboard -Value $paragraph
+
+# Set a function for pressing and releasing keys
+# Define a function to simulate key presses
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -MemberDefinition @"
+  [DllImport("user32.dll", SetLastError=true)]
+  public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+"@ -Name "Keyboard" -Namespace "Win32"
+
+function Send-Key {
+    param(
+        [System.Windows.Forms.Keys]$Key
+    )
+    # Key down
+    [Win32.Keyboard]::keybd_event([byte]$Key, 0, 0, 0)
+    # Key up
+    [Win32.Keyboard]::keybd_event([byte]$Key, 0, 2, 0)
+}
+
+# Create up to three key presses
+# CTRL + SHIFT + . = Open Copilot in Edge
+# CTRL + V = Paste
+
+function Send-KeyCombination {
+    param(
+        [System.Windows.Forms.Keys]$Key1,
+        [System.Windows.Forms.Keys]$Key2,
+        [System.Windows.Forms.Keys]$Key3
+    )
+    # Key down sequence
+    [Win32.Keyboard]::keybd_event([byte]$Key1, 0, 0, 0)
+    [Win32.Keyboard]::keybd_event([byte]$Key2, 0, 0, 0)
+    [Win32.Keyboard]::keybd_event([byte]$Key3, 0, 0, 0)
+
+    # Key up sequence
+    [Win32.Keyboard]::keybd_event([byte]$Key3, 0, 2, 0)
+    [Win32.Keyboard]::keybd_event([byte]$Key2, 0, 2, 0)
+    [Win32.Keyboard]::keybd_event([byte]$Key1, 0, 2, 0)
+}
+
+# Use the function to send Ctrl + Shift + . to open Copilot in Edge
+Send-KeyCombination -Key1 'ControlKey' -Key2 'ShiftKey' -Key3 'OemPeriod'
+
+# Wait for 2 seconds for Copilot to start. Adjust as necessary.
+Start-Sleep -Seconds 3
+
+# Simulate the paste action with Ctrl + V to paste the prompt into Copilot
+Send-KeyCombination -Key1 'ControlKey' -Key2 'V'
+
+# Wait for 2 seconds
+Start-Sleep -Seconds 2
+
+# Simulate the Enter key press to submit prompt
+Send-Key -Key 'Return'
